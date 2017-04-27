@@ -38,6 +38,7 @@ source $BP_DIR/compile-extensions/lib/common
 # END CF Common
 LOG_FILE='/tmp/node-build-log.txt'
 echo "******* START FINALIZE *******" >> "$LOG_FILE"
+echo "******* START FINALIZE *******"
 
 ### Load dependencies
 

@@ -29,6 +29,7 @@ source $BP_DIR/compile-extensions/lib/common
 
 LOG_FILE='/tmp/node-build-log.txt'
 echo "******* START SUPPLY *******" >> "$LOG_FILE"
+echo "******* START SUPPLY *******"
 
 ### Load dependencies
 

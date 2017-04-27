@@ -10,5 +10,9 @@ mkdir -p "$DEPS_DIR/0"
 mkdir -p "$BUILD_DIR/.profile.d"
 echo "export DEPS_DIR=\$HOME/.cloudfoundry" > "$BUILD_DIR/.profile.d/0000-set-deps-dir.sh"
 
+echo "******* START COMPILE *******"
+
 $BUILDPACK_DIR/bin/supply "$BUILD_DIR" "$CACHE_DIR" "$DEPS_DIR" 0
 $BUILDPACK_DIR/bin/finalize "$BUILD_DIR" "$CACHE_DIR" "$DEPS_DIR" 0
+
+## TODO - Copy profiled files from DEPS_DIR/0/profile (or whatever) to $BUILD_DIR/.profile.d/0000-[NAME]
