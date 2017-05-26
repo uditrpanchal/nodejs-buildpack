@@ -82,7 +82,6 @@ create_env() {
   cp $BP_DIR/profile/* $DEPS_DIR/$DEPS_IDX/profile.d/
 
   create_default_env
-  create_clamav_env
 }
 
 header "Creating runtime environment && clamav path"

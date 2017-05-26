@@ -4,11 +4,9 @@ create_default_env() {
   export NODE_MODULES_CACHE=${NODE_MODULES_CACHE:-true}
   export NODE_ENV=${NODE_ENV:-production}
   export NODE_VERBOSE=${NODE_VERBOSE:-false}
-}
-
-create_clamav_env(){
   export PATH=$HOME/app/clamav/bin:$HOME/app/clamav/sbin:$PATH
 }
+
 
 list_node_config() {
   echo ""
