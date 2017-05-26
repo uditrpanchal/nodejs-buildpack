@@ -64,8 +64,8 @@ install_bins() {
   mkdir -p "$DEPS_DIR/$DEPS_IDX/node"
   mkdir -p "$DEPS_DIR/$DEPS_IDX/yarn"
   mkdir -p "$DEPS_DIR/$DEPS_IDX/bin"
-  export PATH="$HOME/app/clamav/bin:$HOME/app/clamav/sbin:$DEPS_DIR/$DEPS_IDX/bin:$PATH"
- 
+  export PATH="$DEPS_DIR/$DEPS_IDX/bin:$PATH"
+
   if [ -n "$iojs_engine" ]; then
     warn_node_engine "$iojs_engine"
     install_iojs "$iojs_engine" "$DEPS_DIR/$DEPS_IDX/node"
