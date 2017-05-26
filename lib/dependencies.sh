@@ -95,11 +95,11 @@ get_clamav_cvds(){
 create_symbol_link(){
    local build_dir=${1:-}
    ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so 
-   ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/home/vcap/app/clamav/lib/libclamav.so.7 
-   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/home/vcap/app/clamav/lib/ibclamunrar_iface.so
-   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/home/vcap/app/clamav/lib/libclamunrar_iface.so.7
-   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/home/vcap/app/clamav/lib/libclamunrar.so.7
-   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/home/vcap/app/clamav/lib/libclamunrar.so
+   ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so.7 
+   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/ibclamunrar_iface.so
+   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/libclamunrar_iface.so.7
+   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so.7
+   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so
 
 }
 
