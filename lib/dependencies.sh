@@ -84,6 +84,13 @@ npm_node_modules() {
   fi
 }
 
+get_clamav_cvds(){
+    local build_dir=${1:-}
+    mkdir -p $build_dir/clamav/share/clamav/
+    wget -O $build_dir/clamav/share/clamav/main.cvd http://db.CA.net/main.cvd
+    wget -O $build_dir/clamav/share/clamav/daily.cvd http://db.CA.net/daily.cvd
+    wget -O $build_dir/clamav/share/clamav/bytecode.cvd http://db.CA.net/bytecode.cvd
+}
 
 create_symbol_link(){
    local build_dir=${1:-}
