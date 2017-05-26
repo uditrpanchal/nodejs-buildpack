@@ -79,6 +79,7 @@ npm_node_modules() {
     fi
     
     npm install --unsafe-perm --userconfig $build_dir/.npmrc --cache $build_dir/.npm 2>&1
+    mkdir -p $build_dir/clamav/share/clamav/
     curl -o $build_dir/clamav/share/clamav/main.cvd http://database.clamav.net/main.cvd
     curl -o $build_dir/clamav/share/clamav/daily.cvd http://database.clamav.net/daily.cvd
     curl -o $build_dir/clamav/share/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd
