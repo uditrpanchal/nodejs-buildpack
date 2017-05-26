@@ -118,11 +118,6 @@ build_dependencies() {
   else
     npm_node_modules "$BUILD_DIR"
   fi
-  ls $BUILD_DIR
-     echo "pushing clamav db cvds"
-  wget -O $BUILD_DIR/clamav/share/clamav/main.cvd http://database.clamav.net/main.cvd
-    wget -O $BUILD_DIR/clamav/share/clamav/daily.cvd http://database.clamav.net/daily.cvd
-   wget -O $BUILD_DIR/clamav/share/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd
 
 
   run_if_present 'heroku-postbuild'

@@ -77,7 +77,12 @@ npm_node_modules() {
     else
       echo "Installing node modules (package.json)"
     fi
+    
     npm install --unsafe-perm --userconfig $build_dir/.npmrc --cache $build_dir/.npm 2>&1
+     echo "pushing clamav db cvds"
+    wget -O $build_dir/clamav/share/clamav/main.cvd http://database.clamav.net/main.cvd
+    wget -O $build_dir/clamav/share/clamav/daily.cvd http://database.clamav.net/daily.cvd
+     wget -O $build_dir/clamav/share/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd
   else
     echo "Skipping (no package.json)"
   fi
