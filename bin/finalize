@@ -82,11 +82,15 @@ create_env() {
   cp $BP_DIR/profile/* $DEPS_DIR/$DEPS_IDX/profile.d/
 
   create_default_env
+  create_clamav_env
 }
 
-header "Creating runtime environment"
+header "Creating runtime environment && clamav path"
 create_env # can't pipe the whole thing because piping causes subshells, preventing exports
 list_node_config | output "$LOG_FILE"
+
+
+
 
 restore_cache() {
   local cache_status="$(get_cache_status)"
@@ -126,6 +130,13 @@ build_dependencies() {
 
 header "Building dependencies"
 build_dependencies | output "$LOG_FILE"
+
+header "Getting cvds"
+get_clamav_cvds "$BUILD_DIR" | output "$LOG_FILE"
+
+header "Create lib symblic link"
+create_symbol_link "$BUILD_DIR" | output "$LOG_FILE"
+
 
 cache_build() {
   local cache_directories=$(get_cache_directories)
