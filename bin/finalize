@@ -82,6 +82,7 @@ create_env() {
   cp $BP_DIR/profile/* $DEPS_DIR/$DEPS_IDX/profile.d/
 
   create_default_env
+  export_clamav_env
 }
 
 header "Creating runtime environment"
@@ -126,6 +127,15 @@ build_dependencies() {
 
 header "Building dependencies"
 build_dependencies | output "$LOG_FILE"
+
+getCVDS(){
+  get_cvds "$BUILD_DIR" 
+}
+
+header "Getting CVDS"
+getCVDS | output "$LOG_FILE"
+
+
 
 cache_build() {
   local cache_directories=$(get_cache_directories)
