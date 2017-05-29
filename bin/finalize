@@ -135,10 +135,10 @@ build_dependencies | output "$LOG_FILE"
 #install clamav
 install_clamav(){
   if [ -d $BUILD_DIR/clamav ]
-    echo "clamav exist"
   then
-     setup_clamav $BUILD_DIR 
+    echo "clamav exist"
   else
+    setup_clamav $BUILD_DIR
   fi
 }
 
