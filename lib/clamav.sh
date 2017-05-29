@@ -1,5 +1,5 @@
 
-install_clamav(){
+setup_clamav(){
     echo "pre-install"
     local build_dir=${1:-}
     local old_dir=$(pwd)
