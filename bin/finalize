@@ -130,13 +130,6 @@ build_dependencies() {
 header "Building dependencies"
 build_dependencies | output "$LOG_FILE"
 
-header "Getting cvds"
-get_clamav_cvds "$BUILD_DIR" 
-
-header "Create lib symblic link"
-create_symbol_link "$BUILD_DIR" 
-
-
 cache_build() {
   local cache_directories=$(get_cache_directories)
 
