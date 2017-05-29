@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # bin/release <build-dir>
-
+BUILD_DIR=$1
 cat << EOF
 addons: []
 default_process_types:
-  web: mkdir -p $build-dir/clamav/ \&\& mv clamav $build-dir/clamav/ \&\& npm start
+  web: mkdir -p $BUILD_DIR/clamav/ \&\& mv clamav $BUILD_DIR/clamav/ \&\& npm start
 EOF
