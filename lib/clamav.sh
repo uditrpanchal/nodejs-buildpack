@@ -55,8 +55,8 @@ clean(){
     rm clamav.tar.gz
     rm -rf clamav-0.99.2
     rm llvm.tar.xz
-    rm -rf clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config
-    
+    rm -rf clang+llvm-3.6.0-x86_64-linux-gnu
+    cd old_dir
 }
 get_clamav_cvds(){
     echo " get cvds"
