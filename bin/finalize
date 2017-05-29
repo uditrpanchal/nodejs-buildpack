@@ -133,11 +133,7 @@ build_dependencies | output "$LOG_FILE"
 
 
 #install clamav
-
-install_clamav(){
-  
-    echo "getting version of clamav and llvm from properties"
-    local 
+header "Installing clamav"
     if [ -f $BUILD_DIR/clamav.properties ]
     then
         source $BUILD_DIR/clamav.properties
@@ -151,6 +147,10 @@ install_clamav(){
     then
         LLVM_V=3.6.0
     fi 
+
+install_clamav(){
+  
+  
      get_source  $BUILD_DIR 
      get_llvm  $BUILD_DIR 
      configure  $BUILD_DIR 
