@@ -21,7 +21,7 @@ setup_clamav(){
     make >  /dev/null
 
     echo "install clamav"
-    make install /dev/null
+    make install > /dev/null
 
     echo "post-install"
     cd $old_dir
