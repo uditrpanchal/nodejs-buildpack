@@ -84,24 +84,6 @@ npm_node_modules() {
   fi
 }
 
-get_clamav_cvds(){
-    local build_dir=${1:-}
-    mkdir -p $build_dir/clamav/share/clamav/
-    wget -O $build_dir/clamav/share/clamav/main.cvd http://database.clamav.net/main.cvd
-    wget -O $build_dir/clamav/share/clamav/daily.cvd http://database.clamav.net/daily.cvd
-    wget -O $build_dir/clamav/share/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd
-}
-
-create_symbol_link(){
-   local build_dir=${1:-}
-   ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so 
-   ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so.7 
-   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/ibclamunrar_iface.so
-   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/libclamunrar_iface.so.7
-   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so.7
-   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so
-
-}
 
 npm_rebuild() {
   local build_dir=${1:-}
