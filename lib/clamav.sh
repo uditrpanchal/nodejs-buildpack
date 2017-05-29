@@ -35,6 +35,6 @@ setup_clamav(){
     # rm $build_dir/llvm.tar.xz
     # rm -rf $build_dir/clang+llvm-3.6.0-x86_64-linux-gnu
 
-    mkdir clamav
+    mkdir $build_dir/clamav
 }
 
