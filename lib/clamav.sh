@@ -35,6 +35,29 @@ setup_clamav(){
     rm $build_dir/llvm.tar.xz
     rm -rf $build_dir/clang+llvm-3.6.0-x86_64-linux-gnu
 
+    echo "config freshclam and clam daemon"
+    if [ -f $build_dir/freshclam.conf ]
+    then
+        mv $build_dir/freshclam.conf $build_dir/clamav/etc/freshclam.conf
+    else
+        mv $build_dir/clamav/etc/freshclam.conf.sample $build_dir/clamav/etc/freshclam.conf
+        sed -i 's/^Foreground .*$/Foreground true/g' $build_dir/clamav/etc/freshclam.conf
+        sed -i 's/^Example *$//g'  $build_dir/clamav/etc/freshclam.conf
+    fi
+
+    if [ -f $build_dir/clamd.conf ]
+    then
+        mv $build_dir/clamd.conf $build_dir/clamav/etc/clamd.conf
+        sed -i
+    else
+        mv $build_dir/clamav/etc/clamd.conf.sample $build_dir/clamav/etc/clamd.conf
+        echo "TCPSocket 3310" >> $build_dir/clamav/etc/clamd.conf
+        sed -i 's/^Foreground .*$/Foreground true/g' $build_dir/clamav/etc/clamd.conf
+        sed -i 's/^Example *$//g' $build_dir/clamav/etc/clamd.conf
+    fi
+
+
+
 
 }
 
