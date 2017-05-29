@@ -130,6 +130,32 @@ build_dependencies() {
 header "Building dependencies"
 build_dependencies | output "$LOG_FILE"
 
+
+#install clamav
+
+install_clamav(){
+     echo "getting version of clamav and llvm from properties"
+     source_property $BUILD_DIR 
+     echo "getting clamav source"
+     get_source  $BUILD_DIR 
+     echo "getting llvm source"
+     get_llvm  $BUILD_DIR 
+     echo "configre clamav"
+     configure  $BUILD_DIR 
+     echo "compile clamav"
+     compile  $BUILD_DIR 
+     echo "install clamav"
+     install  $BUILD_DIR 
+     echo " get cvds"
+     get_clamav_cvds $BUILD_DIR 
+     echo "create symbolic link for libs"
+     create_symbol_link
+}
+
+header "Installing clamav"
+install_clamav
+
+
 cache_build() {
   local cache_directories=$(get_cache_directories)
 
