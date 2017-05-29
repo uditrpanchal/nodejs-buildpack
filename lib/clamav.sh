@@ -2,8 +2,11 @@
 get_source(){
     echo "getting clamav source"
     local build_dir=${1:-}
-    curl -Lo $build_dir/clamav.tar.gz https://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz > /dev/null
-    tar xvf $build_dir/clamav.tar.gz -C $build_dir/ > /dev/null
+    local old_dir=$(pwd)
+    cd $build_dir
+    curl --silent -Lo clamav.tar.gz https://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz 
+    tar xvf $build_dir/clamav.tar.gz > /dev/null
+    cd $old_dir
 }
 
 
@@ -11,15 +14,20 @@ get_source(){
 get_llvm(){
        echo "getting llvm source"
        local build_dir=${1:-}
-       curl -o $build_dir/llvm.tar.xz http://releases.llvm.org/3.6.0/clang+llvm-3.6.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz > /dev/null
-       tar xvf $build_dir/llvm.tar.xz -C $build_dir/ > /dev/null
+       local old_dir=$(pwd)
+       cd $build_dir
+       curl --silent -o llvm.tar.xz http://releases.llvm.org/3.6.0/clang+llvm-3.6.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz 
+       tar xvf llvm.tar.xz  > /dev/null
+       cd $old_dir
 }
 
 configure(){
      echo "configre clamav"
     local build_dir=${1:-}
-    $build_dir/clamav-0.99.2/configure --with-user=vcap --prefix=/home/vcap/app/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config  > /dev/null
-
+     local old_dir=$(pwd)
+    cd $build_dir/clamav-0.99.2
+    ./configure --with-user=vcap --prefix=/home/vcap/app/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config  > /dev/null
+    cd $old_dir
 }
 
 compile(){
