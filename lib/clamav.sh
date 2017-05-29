@@ -52,14 +52,20 @@ get_clamav_cvds(){
     echo " get cvds"
     local build_dir=${1:-}
     mkdir -p $build_dir/clamav/share/clamav/
-    wget -O $build_dir/clamav/share/clamav/main.cvd http://database.clamav.net/main.cvd
-    wget -O $build_dir/clamav/share/clamav/daily.cvd http://database.clamav.net/daily.cvd
-    wget -O $build_dir/clamav/share/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd
+    #wget -O $build_dir/clamav/share/clamav/main.cvd http://database.clamav.net/main.cvd
+    #wget -O $build_dir/clamav/share/clamav/daily.cvd http://database.clamav.net/daily.cvd
+    #wget -O $build_dir/clamav/share/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd
 }
 
 create_symbol_link(){
     echo "create symbolic link for libs"
    local build_dir=${1:-}
+   ls /home
+   ls /home/vcap
+   ls /home/vcap/app
+   ls /home/vcap/app/clamav
+   ls -R /home/vcap/app/clamav
+   ls /home/vcap/app/clamav
    ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so 
    ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so.7 
    ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/ibclamunrar_iface.so
