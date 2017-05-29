@@ -4,7 +4,7 @@ source_property(){
     if [ -f clamav.properties ]
     then
         source clamav.properties
-    if
+    fi
     if [ -z $CLAMAV_V ]
     then
        export CLAMAV_V=0.99.2
