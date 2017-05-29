@@ -137,6 +137,7 @@ install_clamav(){
   if [ -d $BUILD_DIR/clamav ]
   then
     echo "clamav exist"
+    create_symbol_link $BUILD_DIR
   else
     setup_clamav $BUILD_DIR
   fi
