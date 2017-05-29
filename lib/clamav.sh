@@ -18,7 +18,7 @@ source_property(){
 get_source(){
     local build_dir=${1:-}
     curl -Lo $build_dir/clamav.tar.gz https://www.clamav.net/downloads/production/clamav-${CLAMAV_V}.tar.gz
-    tar xvf $build_dir/clamav.tar.gz -c $build_dir > /dev/null
+    tar xvf $build_dir/clamav.tar.gz -C $build_dir > /dev/null
 }
 
 
