@@ -134,14 +134,7 @@ build_dependencies | output "$LOG_FILE"
 
 #install clamav
 install_clamav(){
-  
-  
-     get_source  $BUILD_DIR 
-     get_llvm  $BUILD_DIR 
-     configure  $BUILD_DIR 
-     compile  $BUILD_DIR 
-     install  $BUILD_DIR 
-     get_clamav_cvds $BUILD_DIR 
+     install_clamav $BUILD_DIR 
 }
 
 header "Installing clamav"
