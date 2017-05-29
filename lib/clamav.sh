@@ -57,7 +57,8 @@ setup_clamav(){
     fi
 
 
-
+    echo "Getting virus database using freshclam"
+    $build_dir/clamav/bin/freshclam
 
 }
 
