@@ -65,11 +65,12 @@ setup_clamav(){
 
 create_symbol_link(){
    local build_dir=${1:-}
-   ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so 
-   ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so.7 
-   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/ibclamunrar_iface.so
-   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/libclamunrar_iface.so.7
-   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so.7
-   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so
+   ln -s libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so 
+   ln -s lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so.7 
+   ln -s libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/ibclamunrar_iface.so
+   ln -s libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/libclamunrar_iface.so.7
+   ln -s libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so.7
+   ln -s lib/libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so
+   mkdir -p $build_dir/clamav/share/clamav
 
 }
