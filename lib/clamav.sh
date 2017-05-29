@@ -14,8 +14,8 @@ setup_clamav(){
     tar xvf llvm.tar.xz  > /dev/null
       
     echo "configre clamav"
-    cd $build_dir/clamav-0.99.2
-    ./configure --with-user=vcap --prefix=$build_dir/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config  > /dev/null
+    cd clamav-0.99.2
+    ./configure --with-user=vcap --prefix=$(pwd)/clamav --disable-clamav --with-system-llvm=$(pwd)/clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config  > /dev/null
 
     echo "compile clamav"
     make >  /dev/null
@@ -23,17 +23,20 @@ setup_clamav(){
     echo "install clamav"
     make install > /dev/null
 
+    echo " making dir for cvds"
+    cd ..
+    mkdir -p clamav/share/clamav/
+
     echo "post-install"
     cd $old_dir
 
     echo "cleanning clamav residue"
-    rm clamav.tar.gz
-    rm -rf clamav-0.99.2
-    rm llvm.tar.xz
-    rm -rf clang+llvm-3.6.0-x86_64-linux-gnu
+    rm $build_dir/clamav.tar.gz
+    rm -rf $build_dir/clamav-0.99.2
+    rm $build_dir/llvm.tar.xz
+    rm -rf $build_dir/clang+llvm-3.6.0-x86_64-linux-gnu
 
-    echo " making dir for cvds"
-    mkdir -p  $build_dir/clamav/share/clamav/
+  
 
 
 }
