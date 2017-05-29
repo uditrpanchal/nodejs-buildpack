@@ -26,7 +26,7 @@ detect_memory() {
   esac
 }
 
-export PATH="$PATH:$HOME/bin:$HOME/node_modules/.bin:$HOME/app/clamav/bin:$HOME/app/clamav/sbin"
+export PATH="$PATH:$HOME/bin:$HOME/node_modules/.bin"
 
 calculate_concurrency
 

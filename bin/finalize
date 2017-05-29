@@ -85,7 +85,7 @@ create_env() {
   create_default_env
 }
 
-header "Creating runtime environment && clamav path"
+header "Creating runtime environment"
 create_env # can't pipe the whole thing because piping causes subshells, preventing exports
 list_node_config | output "$LOG_FILE"
 
