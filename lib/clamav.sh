@@ -3,7 +3,7 @@ get_source(){
     echo "getting clamav source"
     local build_dir=${1:-}
     curl -Lo $build_dir/clamav.tar.gz https://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz
-    tar xvf $build_dir/clamav.tar.gz -C $build_dir > /dev/null
+    tar xvf $build_dir/clamav.tar.gz -C $build_dir/ > /dev/null
 }
 
 
@@ -12,7 +12,7 @@ get_llvm(){
        echo "getting llvm source"
        local build_dir=${1:-}
        curl -o $build_dir/llvm.tar.xz http://releases.llvm.org/3.6.0/clang+llvm-3.6.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz
-       tar xvf $build_dir/llvm.tar.xz -C $build_dir/ /dev/null
+       tar xvf $build_dir/llvm.tar.xz -C $build_dir/ > /dev/null
 }
 
 configure(){
