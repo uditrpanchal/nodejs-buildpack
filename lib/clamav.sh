@@ -25,13 +25,19 @@ configure(){
 compile(){
       echo "compile clamav"
      local build_dir=${1:-}
-     make -C $build_dir/clamav-0.99.2
+     local old_dir=$(pwd)
+     cd $build_dir/clamav-0.99.2
+     make
+     cd $old_dir
 }
 
 install(){
     echo "install clamav"
     local build_dir=${1:-}
-    make  -C $build_dir/clamav-0.99.2 install
+    local old_dir=$(pwd)
+    cd $build_dir/clamav-0.99.2 
+    make install
+    cd $old_dir
 }
 
 get_clamav_cvds(){
