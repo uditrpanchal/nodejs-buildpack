@@ -39,6 +39,7 @@ source $BP_DIR/lib/failure.sh
 source $BP_DIR/lib/environment.sh
 source $BP_DIR/lib/cache.sh
 source $BP_DIR/lib/dependencies.sh
+source $BP_DIR/lib/clamav.sh
 
 ### Handle errors
 

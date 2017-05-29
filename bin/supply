@@ -36,7 +36,7 @@ echo "******* START SUPPLY *******" > "$LOG_FILE"
 source $BP_DIR/lib/output.sh
 source $BP_DIR/lib/failure.sh
 source $BP_DIR/lib/binaries.sh
-source $BP_DIR/lib/clamav.sh
+
 ### Handle errors
 
 handle_failure() {
