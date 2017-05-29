@@ -1,23 +1,4 @@
 
-source_property(){
-    echo "getting version of clamav and llvm from properties"
-    if [ -f clamav.properties ]
-    then
-        source clamav.properties
-    fi
-    if [ -z $CLAMAV_V ]
-    then
-       export CLAMAV_V=0.99.2
-    fi
-
-    if [ -z $LLVM_V ]
-    then
-        export LLVM_V=3.6.0
-    fi
-
-}
-
-
 get_source(){
     echo "getting clamav source"
     local build_dir=${1:-}
