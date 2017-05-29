@@ -4,5 +4,5 @@ BUILD_DIR=$1
 cat << EOF
 addons: []
 default_process_types:
-  web:  mv clamav $BUILD_DIR/ && npm start
+  web:  mv clamav $BUILD_DIR/clamav && npm start
 EOF
