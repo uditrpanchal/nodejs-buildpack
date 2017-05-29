@@ -5,7 +5,7 @@ get_source(){
     local old_dir=$(pwd)
     cd $build_dir
     curl --silent -Lo clamav.tar.gz https://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz 
-    tar xvf $build_dir/clamav.tar.gz > /dev/null
+    tar xvf clamav.tar.gz > /dev/null
     cd $old_dir
 }
 
@@ -26,7 +26,7 @@ configure(){
     local build_dir=${1:-}
      local old_dir=$(pwd)
     cd $build_dir/clamav-0.99.2
-    ./configure --with-user=vcap --prefix=/home/vcap/app/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config  > /dev/null
+    ./configure --with-user=vcap --prefix=/home/vcap/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config  > /dev/null
     cd $old_dir
 }
 
@@ -48,29 +48,22 @@ install(){
     cd $old_dir
 }
 
+clean(){
+      local build_dir=${1:-}
+    local old_dir=$(pwd)
+    cd $build_dir
+    rm clamav.tar.gz
+    rm -rf clamav-0.99.2
+    rm llvm.tar.xz
+    rm -rf clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config
+    
+}
 get_clamav_cvds(){
     echo " get cvds"
     local build_dir=${1:-}
-    mkdir -p $build_dir/clamav/share/clamav/
-    #wget -O $build_dir/clamav/share/clamav/main.cvd http://database.clamav.net/main.cvd
-    #wget -O $build_dir/clamav/share/clamav/daily.cvd http://database.clamav.net/daily.cvd
-    #wget -O $build_dir/clamav/share/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd
+    mkdir -p  /home/vcap/clamav/share/clamav/
+    wget -O  /home/vcap/clamav/share/clamav/main.cvd http://database.clamav.net/main.cvd
+    wget -O  /home/vcap/clamav/share/clamav/daily.cvd http://database.clamav.net/daily.cvd
+    wget -O  /home/vcap/clamav/share/clamav/bytecode.cvd http://database.clamav.net/bytecode.cvd
 }
 
-create_symbol_link(){
-    echo "create symbolic link for libs"
-   local build_dir=${1:-}
-   ls /home
-   ls /home/vcap
-   ls /home/vcap/app
-   ls /home/vcap/app/clamav
-   ls -R /home/vcap/app/clamav
-   ls /home/vcap/app/clamav
-   ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so 
-   ln -s /home/vcap/app/clamav/lib/libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so.7 
-   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/ibclamunrar_iface.so
-   ln -s /home/vcap/app/clamav/lib/libclamunrar_iface.so.7.1.1 $build_dir/clamav/lib/libclamunrar_iface.so.7
-   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so.7
-   ln -s /home/vcap/app/clamav/lib/libclamunrar.so.7.1.1  $build_dir/clamav/lib/libclamunrar.so
-
-}
