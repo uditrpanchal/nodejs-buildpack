@@ -30,13 +30,7 @@ setup_clamav(){
     cd $old_dir
 
     echo "config freshclam and clam daemon"
-    if [ -f $build_dir/freshclam.conf ]
-    then
-        mv $build_dir/freshclam.conf $HOME/app/clamav/etc/freshclam.conf
-    else
-        echo "Foreground true" > $HOME/app/clamav/etc/freshclam.conf
-        echo "NotifyClamd" >> $HOME/app/clamav/etc/freshclam.conf
-    fi
+ 
 
     if [ -f $build_dir/clamd.conf ]
     then
@@ -49,6 +43,14 @@ setup_clamav(){
         echo "LogFileMaxSize 100M" >>  $HOME/app/clamav/etc/clamd.conf
         echo "LogTime true" >> $HOME/app/clamav/etc/clamd.conf
         echo "LogVerbose true" >> $HOME/app/clamav/etc/clamd.conf        
+    fi
+
+    if [ -f $build_dir/freshclam.conf ]
+    then
+        mv $build_dir/freshclam.conf $HOME/app/clamav/etc/freshclam.conf
+    else
+        echo "Foreground true" > $HOME/app/clamav/etc/freshclam.conf
+        echo "NotifyClamd $HOME/app/clamav/etc/clamd.conf" >> $HOME/app/clamav/etc/freshclam.conf
     fi
 
 
