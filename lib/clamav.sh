@@ -72,14 +72,8 @@ config_clamav(){
 
 }
 
-set_up_clamav_dir(){
-    local build_dir=${1:-}
-    mkdir $HOME/app/
-    mv $build_dir/clamav $HOME/app/
-}
-
-
 create_symbol_link(){
+    echo "creating library symbolic link"
    local build_dir=${1:-}
    ln -s libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so 
    ln -s libclamav.so.7.1.1 $build_dir/clamav/lib/libclamav.so.7 
