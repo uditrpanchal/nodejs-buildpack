@@ -28,7 +28,7 @@ setup_clamav(){
 
     echo "post-install"
     cd $old_dir
-    
+
     echo "cleanning clamav residue"
     rm $build_dir/clamav.tar.gz
     rm -rf $build_dir/clamav-0.99.2
@@ -70,6 +70,12 @@ config_clamav(){
     echo "move clamav to build directory"
     mv  $HOME/app/clamav $build_dir/
 
+}
+
+set_up_clamav_dir(){
+    local build_dir=${1:-}
+    mkdir $HOME/app/
+    mv $build_dir/clamav $HOME/app/
 }
 
 

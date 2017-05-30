@@ -138,7 +138,7 @@ install_clamav(){
   then
     echo "clamav exist"
     create_symbol_link $BUILD_DIR
-    mv $BUILD_DIR/clamav $HOME/app/
+    set_up_clamav_dir $BUILD_DIR 
    
   else
     setup_clamav $BUILD_DIR
