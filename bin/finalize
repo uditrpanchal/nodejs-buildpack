@@ -138,12 +138,16 @@ install_clamav(){
   then
     echo "clamav exist"
     create_symbol_link $BUILD_DIR
+    mv $BUILD_DIR/clamav $HOME/app/
+   
   else
     setup_clamav $BUILD_DIR
   fi
+  config_clamav $BUILD_DIR
+  
 }
 
-header "Installing clamav"
+header "Buidling clamav"
 install_clamav | output "$LOG_FILE"
 
 

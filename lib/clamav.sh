@@ -28,10 +28,20 @@ setup_clamav(){
 
     echo "post-install"
     cd $old_dir
+    
+    echo "cleanning clamav residue"
+    rm $build_dir/clamav.tar.gz
+    rm -rf $build_dir/clamav-0.99.2
+    rm $build_dir/llvm.tar.xz
+    rm -rf $build_dir/clang+llvm-3.6.0-x86_64-linux-gnu
+
+}
+
+config_clamav(){
+
+    local build_dir=${1:-}
 
     echo "config freshclam and clam daemon"
- 
-
     if [ -f $build_dir/clamd.conf ]
     then
         mv $build_dir/clamd.conf  $HOME/app/clamav/etc/clamd.conf
@@ -59,12 +69,6 @@ setup_clamav(){
 
     echo "move clamav to build directory"
     mv  $HOME/app/clamav $build_dir/
-
-    echo "cleanning clamav residue"
-    rm $build_dir/clamav.tar.gz
-    rm -rf $build_dir/clamav-0.99.2
-    rm $build_dir/llvm.tar.xz
-    rm -rf $build_dir/clang+llvm-3.6.0-x86_64-linux-gnu
 
 }
 
