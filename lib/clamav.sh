@@ -62,6 +62,7 @@ config_clamav(){
         echo "Foreground true" > $HOME/app/clamav/etc/freshclam.conf
         echo "NotifyClamd $HOME/app/clamav/etc/clamd.conf" >> $HOME/app/clamav/etc/freshclam.conf
         echo "DatabaseMirror db.ca.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
+        echo "DatabaseMirror database.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
     fi
 
     echo " making dir for cvds"
