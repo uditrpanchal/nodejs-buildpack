@@ -7,11 +7,11 @@ setup_clamav(){
 
     echo "getting clamav source"
     curl --silent -Lo clamav.tar.gz https://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz 
-    tar xvf clamav.tar.gz > /dev/null
+    tar xf clamav.tar.gz 
 
     echo "getting llvm source"
     curl --silent -o llvm.tar.xz http://releases.llvm.org/3.6.0/clang+llvm-3.6.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz 
-    tar xvf llvm.tar.xz  > /dev/null
+    tar xf llvm.tar.xz  
       
     echo "configre clamav"
     cd clamav-0.99.2
@@ -34,7 +34,7 @@ setup_clamav(){
     then
         mv $build_dir/freshclam.conf $HOME/app/clamav/etc/freshclam.conf
     else
-        mv $build_dir/clamav/etc/freshclam.conf.sample  $HOME/app/clamav/etc/freshclam.conf
+        mv $HOME/app/clamav/etc/freshclam.conf.sample  $HOME/app/clamav/etc/freshclam.conf
         sed -i 's/^Foreground .*$/Foreground true/g'  $HOME/app/clamav/etc/freshclam.conf
         sed -i 's/^Example *$//g'   $HOME/app/clamav/etc/freshclam.conf
     fi
@@ -43,7 +43,7 @@ setup_clamav(){
     then
         mv $build_dir/clamd.conf  $HOME/app/clamav/etc/clamd.conf
     else
-        mv $build_dir/clamav/etc/clamd.conf.sample  $HOME/app/clamav/etc/clamd.conf
+        mv $HOME/app/clamav/etc/clamd.conf.sample  $HOME/app/clamav/etc/clamd.conf
         echo "TCPSocket 3310" >>  $HOME/app/clamav/etc/clamd.conf
         sed -i 's/^Foreground .*$/Foreground true/g'  $HOME/app/clamav/etc/clamd.conf
         sed -i 's/^Example *$//g'  $HOME/app/clamav/etc/clamd.conf
@@ -51,10 +51,10 @@ setup_clamav(){
 
 
     echo "Getting virus database using freshclam"
-     $HOME/app/clamav/bin/freshclam
+    $HOME/app/clamav/bin/freshclam
 
     echo "move clamav to build directory"
-    mv  $HOME/app/clamav $build_dir
+    mv  $HOME/app/clamav $build_dir/
 
     echo "cleanning clamav residue"
     rm $build_dir/clamav.tar.gz
