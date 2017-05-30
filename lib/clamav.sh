@@ -63,6 +63,9 @@ config_clamav(){
         echo "NotifyClamd $HOME/app/clamav/etc/clamd.conf" >> $HOME/app/clamav/etc/freshclam.conf
     fi
 
+    echo " making dir for cvds"
+    mkdir -p $HOME/app/clamav/share/clamav/
+
 
     echo "Getting virus database using freshclam"
     $HOME/app/clamav/bin/freshclam
