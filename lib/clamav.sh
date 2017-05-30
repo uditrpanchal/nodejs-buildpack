@@ -52,7 +52,7 @@ config_clamav(){
         echo "LogFile $HOME/app/clamav/etc/clamav.log" >> $HOME/app/clamav/etc/clamd.conf
         echo "LogFileMaxSize 100M" >>  $HOME/app/clamav/etc/clamd.conf
         echo "LogTime true" >> $HOME/app/clamav/etc/clamd.conf
-        echo "LogVerbose true" >> $HOME/app/clamav/etc/clamd.conf        
+        echo "LogVerbose true" >> $HOME/app/clamav/etc/clamd.conf   
     fi
 
     if [ -f $build_dir/freshclam.conf ]
@@ -61,6 +61,7 @@ config_clamav(){
     else
         echo "Foreground true" > $HOME/app/clamav/etc/freshclam.conf
         echo "NotifyClamd $HOME/app/clamav/etc/clamd.conf" >> $HOME/app/clamav/etc/freshclam.conf
+        echo "DatabaseMirror db.ca.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
     fi
 
     echo " making dir for cvds"
