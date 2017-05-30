@@ -13,6 +13,8 @@ setup_clamav(){
     curl --silent -o llvm.tar.xz http://releases.llvm.org/3.6.0/clang+llvm-3.6.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz 
     tar xvf llvm.tar.xz  > /dev/null
       
+    whoami
+    echo "$HOME"
     echo "configre clamav"
     cd clamav-0.99.2
     ./configure --with-user=vcap --prefix=$build_dir/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config  > /dev/null
