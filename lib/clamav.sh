@@ -34,19 +34,21 @@ setup_clamav(){
     then
         mv $build_dir/freshclam.conf $HOME/app/clamav/etc/freshclam.conf
     else
-        mv $HOME/app/clamav/etc/freshclam.conf.sample  $HOME/app/clamav/etc/freshclam.conf
-        sed -i 's/^Foreground .*$/Foreground true/g'  $HOME/app/clamav/etc/freshclam.conf
-        sed -i 's/^Example *$//g'   $HOME/app/clamav/etc/freshclam.conf
+        echo "Foreground true" > $HOME/app/clamav/etc/freshclam.conf
+        echo "NotifyClamd" >> $HOME/app/clamav/etc/freshclam.conf
     fi
 
     if [ -f $build_dir/clamd.conf ]
     then
         mv $build_dir/clamd.conf  $HOME/app/clamav/etc/clamd.conf
     else
-        mv $HOME/app/clamav/etc/clamd.conf.sample  $HOME/app/clamav/etc/clamd.conf
-        echo "TCPSocket 3310" >>  $HOME/app/clamav/etc/clamd.conf
-        sed -i 's/^Foreground .*$/Foreground true/g'  $HOME/app/clamav/etc/clamd.conf
-        sed -i 's/^Example *$//g'  $HOME/app/clamav/etc/clamd.conf
+        echo "TCPSocket 3310" >  $HOME/app/clamav/etc/clamd.conf
+        echo "Foreground true" >>  $HOME/app/clamav/etc/clamd.conf
+        echo "SelfCheck 3600" >> $HOME/app/clamav/etc/clamd.conf
+        echo "LogFile $HOME/app/clamav/etc/clamav.log" >> $HOME/app/clamav/etc/clamd.conf
+        echo "LogFileMaxSize 100M" >>  $HOME/app/clamav/etc/clamd.conf
+        echo "LogTime true" >> $HOME/app/clamav/etc/clamd.conf
+        echo "LogVerbose true" >> $HOME/app/clamav/etc/clamd.conf        
     fi
 
 
