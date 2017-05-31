@@ -49,8 +49,7 @@ config_clamav(){
         echo "TCPSocket 3310" >  $HOME/app/clamav/etc/clamd.conf
         echo "Foreground true" >>  $HOME/app/clamav/etc/clamd.conf
         echo "SelfCheck 3600" >> $HOME/app/clamav/etc/clamd.conf
-        echo "LogFile $HOME/app/clamav/etc/clamav.log" >> $HOME/app/clamav/etc/clamd.conf
-        echo "LogFileMaxSize 100M" >>  $HOME/app/clamav/etc/clamd.conf
+        echo "LogFile /dev/stdout" >> $HOME/app/clamav/etc/clamd.conf
         echo "LogTime true" >> $HOME/app/clamav/etc/clamd.conf
         echo "LogVerbose true" >> $HOME/app/clamav/etc/clamd.conf   
     fi
@@ -60,7 +59,6 @@ config_clamav(){
         mv $build_dir/freshclam.conf $HOME/app/clamav/etc/freshclam.conf
     else
         echo "Foreground true" > $HOME/app/clamav/etc/freshclam.conf
-        echo "NotifyClamd $HOME/app/clamav/etc/clamd.conf" >> $HOME/app/clamav/etc/freshclam.conf
         echo "DatabaseMirror db.ca.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
         echo "DatabaseMirror database.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
     fi
