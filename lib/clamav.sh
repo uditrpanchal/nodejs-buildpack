@@ -75,7 +75,7 @@ config_clamav(){
         echo "DatabaseMirror database.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
     fi
     extra_config $build_dir/freshclam.properties $HOME/app/clamav/etc/freshclam.conf
-
+    cat $HOME/app/clamav/etc/freshclam.conf
     echo " making dir for cvds"
     mkdir -p $HOME/app/clamav/share/clamav/
 
