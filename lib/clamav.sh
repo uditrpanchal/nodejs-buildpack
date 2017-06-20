@@ -41,10 +41,13 @@ extra_config(){
     then
         for line in $(cat $1)
         do
-            local key=$(echo $line | cut -d '=' -f 1)
-            local value=$(echo $line | cut -d '=' -f 2)
-            sed -i "s/^$key [a-zA-Z0-9]*$//g" $2
-            echo "${key} ${value}" >> $2
+            if [ ! -z $line ]
+            then
+                local key=$(echo $line | cut -d '=' -f 1)
+                local value=$(echo $line | cut -d '=' -f 2)
+                sed -i "s/^$key [a-zA-Z0-9]*$//g" $2
+                echo "${key} ${value}" >> $2
+            fi
         done
     fi
 }
