@@ -41,11 +41,12 @@ extra_config(){
     then
         while read -r line
         do
-            echo $line
-            local key=$(echo $line | cut -d '=' -f 1)
-            local value=$(echo $line | cut -d '=' -f 2)
-            sed -i "s/^$key [a-zA-Z0-9]*$//g" $2
-            echo "${key} ${value}" >> $2
+            # echo $line
+            # local key=$(echo $line | cut -d '=' -f 1)
+            # local value=$(echo $line | cut -d '=' -f 2)
+            # sed -i "s/^$key [a-zA-Z0-9]*$//g" $2
+            # echo "${key} ${value}" >> $2
+            echo "qweqeqwe"
         done < $1
     fi
 }
