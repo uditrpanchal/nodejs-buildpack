@@ -39,15 +39,13 @@ setup_clamav(){
 extra_config(){  
     if [ -f $1 ]
     then
-        while read -r line
+        for line in $(cat $1)
         do
-            # echo $line
-            # local key=$(echo $line | cut -d '=' -f 1)
-            # local value=$(echo $line | cut -d '=' -f 2)
-            # sed -i "s/^$key [a-zA-Z0-9]*$//g" $2
-            # echo "${key} ${value}" >> $2
-            echo "qweqeqwe"
-        done < $1
+            local key=$(echo $line | cut -d '=' -f 1)
+            local value=$(echo $line | cut -d '=' -f 2)
+            sed -i "s/^$key [a-zA-Z0-9]*$//g" $2
+            echo "${key} ${value}" >> $2
+        done
     fi
 }
 
@@ -66,7 +64,6 @@ config_clamav(){
         echo "LogTime true" >> $HOME/app/clamav/etc/clamd.conf
         echo "LogVerbose true" >> $HOME/app/clamav/etc/clamd.conf
     fi
-    ls
     extra_config $build_dir/clamd.properties $HOME/app/clamav/etc/clamd.conf
 
     echo "config freshclam"
@@ -77,7 +74,7 @@ config_clamav(){
         echo "DatabaseMirror database.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
     fi
     extra_config $build_dir/freshclam.properties $HOME/app/clamav/etc/freshclam.conf
-
+    cat  $HOME/app/clamav/etc/freshclam.conf
     echo " making dir for cvds"
     mkdir -p $HOME/app/clamav/share/clamav/
 
