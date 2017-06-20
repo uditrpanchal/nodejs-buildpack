@@ -36,11 +36,14 @@ setup_clamav(){
     rm -rf $build_dir/clang+llvm-3.6.0-x86_64-linux-gnu
 
 }
-extra_config(){    
+extra_config(){  
+    echo $1  
     if [ -f $1 ]
     then
         while read -r line
+
         do
+            echo $line
             key=$(echo $line | cut -d '=' -f 1)
             value=$(echo $line | cut -d '=' -f 2)
             sed -i "s/^$key [a-zA-Z0-9]*$//g" $2
