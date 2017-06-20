@@ -36,37 +36,48 @@ setup_clamav(){
     rm -rf $build_dir/clang+llvm-3.6.0-x86_64-linux-gnu
 
 }
+extra_config(){    
+    if [ -f $1 ]
+    then
+        while read -r line
+        do
+            key=$(echo $line | cut -d '=' -f 1)
+            value=$(echo $line | cut -d '=' -f 2)
+            sed -i "s/^$key [a-zA-Z0-9]*$//g" $2
+            echo "${key} ${value}" >> $2
+        done < $1
+    fi
+}
 
 config_clamav(){
 
     local build_dir=${1:-}
 
-    echo "config freshclam and clam daemon"
-    if [ -f $build_dir/clamd.conf ]
+    echo "config clam daemon"
+    if [ ! -f $HOME/app/clamav/etc/clamd.conf ]
     then
-        mv $build_dir/clamd.conf  $HOME/app/clamav/etc/clamd.conf
-    else
         echo "TCPSocket 3310" >  $HOME/app/clamav/etc/clamd.conf
         echo "Foreground true" >>  $HOME/app/clamav/etc/clamd.conf
         echo "SelfCheck 3600" >> $HOME/app/clamav/etc/clamd.conf
         echo "LogFile $HOME/app/clamav/etc/clamav.log" >> $HOME/app/clamav/etc/clamd.conf
         echo "LogFileMaxSize 100M" >>  $HOME/app/clamav/etc/clamd.conf
         echo "LogTime true" >> $HOME/app/clamav/etc/clamd.conf
-        echo "LogVerbose true" >> $HOME/app/clamav/etc/clamd.conf   
+        echo "LogVerbose true" >> $HOME/app/clamav/etc/clamd.conf
     fi
 
-    if [ -f $build_dir/freshclam.conf ]
+    extra_config $build_dir/clamd.properties $HOME/app/clamav/etc/clamd.conf
+
+    echo "config freshclam"
+    if [ ! -f $HOME/app/clamav/etc/freshclam.conf ]
     then
-        mv $build_dir/freshclam.conf $HOME/app/clamav/etc/freshclam.conf
-    else
         echo "Foreground true" > $HOME/app/clamav/etc/freshclam.conf
         echo "DatabaseMirror db.ca.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
         echo "DatabaseMirror database.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
     fi
+    extra_config $build_dir/freshclam.properties $HOME/app/clamav/etc/freshclam.conf
 
     echo " making dir for cvds"
     mkdir -p $HOME/app/clamav/share/clamav/
-
 
     echo "Getting virus database using freshclam"
     $HOME/app/clamav/bin/freshclam
