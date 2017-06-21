@@ -3,19 +3,45 @@ setup_clamav(){
     echo "pre-install"
     local build_dir=${1:-}
     local old_dir=$(pwd)
+    local clamav_v=0.99.2
+    local clamav_vk=clamavVersion
+    local llvm_v=3.6.0
+    local llvm_vk=llvmVersion
     cd $build_dir
 
+    echo "get build parameters"
+    if [ -f $build_dir/build.env ]
+    then
+        for line in $(cat $build_dir/build.env)
+        do
+            if [ ! -z $line ]
+            then
+                local key=$(echo $line | cut -d '=' -f 1)
+                local value=$(echo $line | cut -d '=' -f 2)
+                if [ "$key" == "$clamav_vk"]
+                then
+                    local clamav_v=$value
+                fi
+                if [ "$key" == "$llvm_vk"]
+                then
+                    local llvm_v=$value
+                fi
+            fi
+        done
+    fi
+    echo "$clamav_v"
+
     echo "getting clamav source"
-    curl --silent -Lo clamav.tar.gz https://www.clamav.net/downloads/production/clamav-0.99.2.tar.gz 
+    curl --silent -Lo clamav.tar.gz https://www.clamav.net/downloads/production/clamav-${clamav_v}.tar.gz 
     tar xf clamav.tar.gz 
 
     echo "getting llvm source"
-    curl --silent -o llvm.tar.xz http://releases.llvm.org/3.6.0/clang+llvm-3.6.0-x86_64-linux-gnu-ubuntu-14.04.tar.xz 
+    curl --silent -o llvm.tar.xz http://releases.llvm.org/${llvm_v}/clang+llvm-${llvm_v}-x86_64-linux-gnu-ubuntu-14.04.tar.xz 
     tar xf llvm.tar.xz  
       
     echo "configre clamav"
-    cd clamav-0.99.2
-    ./configure --with-user=vcap --prefix=$HOME/app/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-3.6.0-x86_64-linux-gnu/bin/llvm-config  > /dev/null
+    cd clamav-${clamav_v}
+    ./configure --with-user=vcap --prefix=$HOME/app/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-${llvm_v}-x86_64-linux-gnu/bin/llvm-config  > /dev/null
 
     echo "compile clamav"
     make >  /dev/null
@@ -31,9 +57,9 @@ setup_clamav(){
 
     echo "cleanning clamav residue"
     rm $build_dir/clamav.tar.gz
-    rm -rf $build_dir/clamav-0.99.2
+    rm -rf $build_dir/clamav-${clamav_v}
     rm $build_dir/llvm.tar.xz
-    rm -rf $build_dir/clang+llvm-3.6.0-x86_64-linux-gnu
+    rm -rf $build_dir/clang+llvm-${llvm_v}-x86_64-linux-gnu
 
 }
 extra_config(){  
