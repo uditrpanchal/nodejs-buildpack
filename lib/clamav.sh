@@ -18,11 +18,11 @@ setup_clamav(){
             then
                 local key=$(echo $line | cut -d '=' -f 1)
                 local value=$(echo $line | cut -d '=' -f 2)
-                if [ "$key" == "$clamav_vk"]
+                if [ "$key" == "$clamav_vk" ]
                 then
                     local clamav_v=$value
                 fi
-                if [ "$key" == "$llvm_vk"]
+                if [ "$key" == "$llvm_vk" ]
                 then
                     local llvm_v=$value
                 fi
