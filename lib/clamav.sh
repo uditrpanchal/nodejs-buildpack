@@ -67,7 +67,7 @@ config_clamav(){
         echo "LogTime true" >> $HOME/app/clamav/etc/clamd.conf
         echo "LogVerbose true" >> $HOME/app/clamav/etc/clamd.conf
     fi
-    extra_config $build_dir/clamd.properties $HOME/app/clamav/etc/clamd.conf
+    extra_config $build_dir/clamd.env $HOME/app/clamav/etc/clamd.conf
 
     echo "config freshclam"
     if [ ! -f $HOME/app/clamav/etc/freshclam.conf ]
@@ -76,7 +76,7 @@ config_clamav(){
         echo "DatabaseMirror db.ca.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
         echo "DatabaseMirror database.clamav.net" >> $HOME/app/clamav/etc/freshclam.conf
     fi
-    extra_config $build_dir/freshclam.properties $HOME/app/clamav/etc/freshclam.conf
+    extra_config $build_dir/freshclam.env $HOME/app/clamav/etc/freshclam.conf
 
     echo " making dir for cvds"
     mkdir -p $HOME/app/clamav/share/clamav/
