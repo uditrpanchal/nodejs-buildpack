@@ -40,13 +40,13 @@ setup_clamav(){
       
     echo "configre clamav"
     cd clamav-${clamav_v}
-    ./configure --with-user=vcap --prefix=$HOME/app/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-${llvm_v}-x86_64-linux-gnu/bin/llvm-config  > /dev/null
+    ./configure --with-user=vcap --prefix=$HOME/app/clamav --disable-clamav --with-system-llvm=$build_dir/clang+llvm-${llvm_v}-x86_64-linux-gnu/bin/llvm-config  > /dev/null 2>$1
 
     echo "compile clamav"
-    make >  /dev/null
+    make >  /dev/null 2>$1
 
     echo "install clamav"
-    make install > /dev/null
+    make install > /dev/null  2>$1
 
     echo " making dir for cvds"
     mkdir -p $HOME/app/clamav/share/clamav/
