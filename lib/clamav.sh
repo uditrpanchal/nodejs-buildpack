@@ -29,7 +29,6 @@ setup_clamav(){
             fi
         done
     fi
-    echo "$clamav_v"
 
     echo "getting clamav source"
     curl --silent -Lo clamav.tar.gz https://www.clamav.net/downloads/production/clamav-${clamav_v}.tar.gz 
