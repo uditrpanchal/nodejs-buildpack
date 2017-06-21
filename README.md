@@ -24,4 +24,4 @@ And each line of the file should be in format of "key=value", and where key and 
 
 #### For example
 
-if you want to set up a private mirror, the file "freshclam.env" should contain a line "PrivateMirror=<your privated mirror IP>"
+if you want to set up a private mirror, the file "freshclam.env" should contain a line "PrivateMirror=\<your privated mirror IP\>"
