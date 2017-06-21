@@ -2,7 +2,7 @@
 
 A Cloud Foundry for Node http wrapper around clamav.
 
-This is based on the [Heroku buildpack] (https://github.com/cloudfoundry/nodejs-buildpack).
+This is based on the [Cloud Foundry Buildpack](https://github.com/cloudfoundry/nodejs-buildpack).
 
 ### Addition in this buildpack.
 
@@ -22,6 +22,6 @@ And each line of the file should be in format of "key=value", and where key and 
 
 *note: if duplicated key is specified, only the last key=value will be taken into effect
 
-####For example
+#### For example
 
 if you want to set up a private mirror, the file "freshclam.env" should contain a line "PrivateMirror=<your privated mirror IP>"
