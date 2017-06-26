@@ -17,8 +17,8 @@ And each line of the file should be in format of "key=value", and where key and 
 | Service name   | configuration file name |           configurable parameters can be found below           |
 | -------------- | ----------------------- | -------------------------------------------------------------- |
 |    build       |      build.env          |            [see here](docs/BUILD.md)                               |
-| clamav daemon  |       clamd.env         | [see here](https://www.systutorials.com/docs/linux/man/5-freshclam.conf/)|
-| freshclam      |      freshclam.env      | [see here](https://www.systutorials.com/docs/linux/man/5-clamd.conf/)|
+| clamav daemon  |       clamd.env         | [see here](https://www.systutorials.com/docs/linux/man/5-clamd.conf/)|
+| freshclam      |      freshclam.env      | [see here](https://www.systutorials.com/docs/linux/man/5-freshclam.conf/)|
 
 *note: if duplicated key is specified, only the last key=value will be taken into effect
 
