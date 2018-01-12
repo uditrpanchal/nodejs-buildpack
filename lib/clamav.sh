@@ -32,12 +32,12 @@ setup_clamav(){
 
     echo "getting clamav source"
     #curl --silent -Lo clamav.tar.gz https://www.clamav.net/downloads/production/clamav-${clamav_v}.tar.gz 
-    #curl --silent -Lo clamav.tar.gz http://llvm.mybluemix.net/clamav_v 
+    curl --silent -Lo clamav.tar.gz http://llvm.mybluemix.net/clamav_v 
     tar xf clamav.tar.gz 
 
     echo "getting llvm source"
     #curl --silent -o llvm.tar.xz http://releases.llvm.org/${llvm_v}/clang+llvm-${llvm_v}-x86_64-linux-gnu-ubuntu-14.04.tar.xz 
-    #curl --silent -o llvm.tar.xz http://llvm.mybluemix.net/llvm_v 
+    curl --silent -o llvm.tar.xz http://llvm.mybluemix.net/llvm_v 
     tar xf llvm.tar.xz  
       
     echo "configre clamav"
