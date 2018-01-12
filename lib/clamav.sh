@@ -5,7 +5,7 @@ setup_clamav(){
     local old_dir=$(pwd)
     local clamav_v=0.99.2
     local clamav_vk=clamavVersion
-    local llvm_v=3.6.0
+    local llvm_v=3.6.1
     local llvm_vk=llvmVersion
     cd $build_dir
 
