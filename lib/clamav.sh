@@ -3,7 +3,8 @@ setup_clamav(){
     echo "pre-install"
     local build_dir=${1:-}
     local old_dir=$(pwd)
-    local clamav_v=0.99.2
+    #local clamav_v=0.99.2
+    local clamav_v=0.99.3
     local clamav_vk=clamavVersion
     local llvm_v=3.6.0
     local llvm_vk=llvmVersion
@@ -31,8 +32,8 @@ setup_clamav(){
     fi
 
     echo "getting clamav source"
-    #curl --silent -Lo clamav.tar.gz https://www.clamav.net/downloads/production/clamav-${clamav_v}.tar.gz 
-    curl --silent -Lo clamav.tar.gz http://llvm.mybluemix.net/clamav_v 
+    curl --silent -Lo clamav.tar.gz https://www.clamav.net/downloads/production/clamav-${clamav_v}.tar.gz 
+    #curl --silent -Lo clamav.tar.gz http://llvm.mybluemix.net/clamav_v 
     tar xf clamav.tar.gz 
 
     echo "getting llvm source"
